@@ -8,7 +8,7 @@ Browser Router for Mulan JS
 ### Usage
 ```
 import {renderNode} from 'mulan'
-import {createRouter} from './router'
+import {createRouter} from 'mulan-router'
 
 const NoMatch = () => () => `<h1>404 Page Not Found</h1>`
 
