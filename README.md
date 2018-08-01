@@ -7,21 +7,23 @@ Browser Router for Mulan JS
 
 ### Usage
 ```
-import {renderNode} from 'mulan'
+import {createRenderer} from 'mulan'
 import {createRouter} from 'mulan-router'
 
-const NoMatch = () => () => `<h1>404 Page Not Found</h1>`
-
-const Home = () => (root) => {
-  return `<h1>Home</h1>`
+const NoMatch = () => (render) => {
+  render(`<h1>404 Page Not Found</h1>`)
 }
 
-const ProductsListing = () => (root) => {
-  return `<p>Products listing</p>`
+const Home = () => (render) => {
+  render(`<h1>Home</h1>`)
 }
 
-const ProductsDetail = ({params}) => (root) => {
-  return `<p>Product detail ${params.slug}</p>`
+const ProductsListing = () => (render) => {
+  render(`<p>Products listing</p>`)
+}
+
+const ProductsDetail = ({params}) => (render) => {
+  render(`<p>Product detail ${params.slug}</p>`)
 }
 
 const Router = createRouter({
@@ -31,14 +33,14 @@ const Router = createRouter({
   '/404': NoMatch // non match url will default to last defined route
 })
 
-const App = (root) => {
-  return `
-    <h1>page</h1>
+const App = (render) => {
+  render(`
+    <h1>Page</h1>
     <a data-router-link href="/products">Products</a>
     <a data-router-link href="/products/123123/">Product Detail</a>
-    ${Router(root)}
-  `
+    ${Router}
+  `)
 }
 
-renderNode(document.getElementById('app'), App)
+createRenderer(document.getElementById('app'), App)
 ```

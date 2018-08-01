@@ -59,29 +59,31 @@ var findComponentFromPath = function findComponentFromPath(routes) {
 };
 
 var createRouter = exports.createRouter = function createRouter(routes) {
-  var _findComponentFromPat = findComponentFromPath(routes),
-      match = _findComponentFromPat.match,
-      component = _findComponentFromPat.component;
-
   window.addEventListener('pushstate', function () {
+    var _findComponentFromPat = findComponentFromPath(routes),
+        match = _findComponentFromPat.match,
+        component = _findComponentFromPat.component;
+
+    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
+  });
+
+  window.addEventListener('popstate', function () {
     var _findComponentFromPat2 = findComponentFromPath(routes),
         match = _findComponentFromPat2.match,
         component = _findComponentFromPat2.component;
 
-    (0, _mulan.renderNode)(document.getElementById('router'), component(match));
+    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
   });
 
-  window.addEventListener('popstate', function () {
+  setTimeout(function () {
     var _findComponentFromPat3 = findComponentFromPath(routes),
         match = _findComponentFromPat3.match,
         component = _findComponentFromPat3.component;
 
-    (0, _mulan.renderNode)(document.getElementById('router'), component(match));
-  });
+    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
+  }, 0);
 
-  return function (root) {
-    return '<div id="router">' + (component && component(match)(root)) + '</div>';
-  };
+  return '<div id="router"></div>';
 };
 
 _delegateEvents2.default.bind(document.body, '[data-router-link]', 'click', function (e) {
