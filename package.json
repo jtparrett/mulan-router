@@ -1,6 +1,6 @@
 {
   "name": "mulan-router",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -11,14 +11,13 @@
     "url": "git+https://github.com/jtparrett/mulan-router.git"
   },
   "author": "",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jtparrett/mulan-router/issues"
   },
   "homepage": "https://github.com/jtparrett/mulan-router#readme",
   "dependencies": {
     "delegate-events": "^1.1.1",
-    "mulan": "^2.0.2",
+    "mulan": "^3.0.2",
     "path-to-regexp": "^2.2.1"
   },
   "devDependencies": {

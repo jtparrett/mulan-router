@@ -1035,9 +1035,9 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-mulan@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/mulan/-/mulan-2.0.2.tgz#3361a7fd1f62668d6006638834b06105b43da91a"
+mulan@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/mulan/-/mulan-3.0.2.tgz#6420caffd421507da19df377539753a76b26b7a4"
 
 nan@^2.9.2:
   version "2.10.0"
