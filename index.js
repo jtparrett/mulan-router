@@ -63,7 +63,7 @@ var createRouter = exports.createRouter = function createRouter(routes) {
           match = _findComponentFromPat.match,
           component = _findComponentFromPat.component;
 
-      render(component(match)(render, root));
+      component(match)(render, root);
     });
 
     window.addEventListener('popstate', function () {
@@ -71,14 +71,14 @@ var createRouter = exports.createRouter = function createRouter(routes) {
           match = _findComponentFromPat2.match,
           component = _findComponentFromPat2.component;
 
-      render(component(match)(render, root));
+      component(match)(render, root);
     });
 
     var _findComponentFromPat3 = findComponentFromPath(routes),
         match = _findComponentFromPat3.match,
         component = _findComponentFromPat3.component;
 
-    render(component(match)(render, root));
+    component(match)(render, root);
   };
 };
 

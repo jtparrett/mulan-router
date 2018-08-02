@@ -37,16 +37,16 @@ const findComponentFromPath = (routes) => {
 export const createRouter = (routes) => (render, root) => {
   window.addEventListener('pushstate', () => {
     const {match, component} = findComponentFromPath(routes)
-    render(component(match)(render, root))
+    component(match)(render, root)
   })
 
   window.addEventListener('popstate', () => {
     const {match, component} = findComponentFromPath(routes)
-    render(component(match)(render, root))
+    component(match)(render, root)
   })
 
   const {match, component} = findComponentFromPath(routes)
-  render(component(match)(render, root))
+  component(match)(render, root)
 }
 
 delegate.bind(document.body, `[data-router-link]`, 'click', (e) => {
