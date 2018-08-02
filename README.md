@@ -38,8 +38,10 @@ const App = (render) => {
     <h1>Page</h1>
     <a data-router-link href="/products">Products</a>
     <a data-router-link href="/products/123123/">Product Detail</a>
-    ${Router}
+    <div id="router"></div>
   `)
+
+  createRenderer(document.getElementById('router'), Router)  
 }
 
 createRenderer(document.getElementById('app'), App)

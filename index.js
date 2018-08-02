@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createRouter = undefined;
 
-var _mulan = require('mulan');
-
 var _delegateEvents = require('delegate-events');
 
 var _delegateEvents2 = _interopRequireDefault(_delegateEvents);
@@ -59,31 +57,29 @@ var findComponentFromPath = function findComponentFromPath(routes) {
 };
 
 var createRouter = exports.createRouter = function createRouter(routes) {
-  window.addEventListener('pushstate', function () {
-    var _findComponentFromPat = findComponentFromPath(routes),
-        match = _findComponentFromPat.match,
-        component = _findComponentFromPat.component;
+  return function (render, root) {
+    window.addEventListener('pushstate', function () {
+      var _findComponentFromPat = findComponentFromPath(routes),
+          match = _findComponentFromPat.match,
+          component = _findComponentFromPat.component;
 
-    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
-  });
+      render(component(match)(render, root));
+    });
 
-  window.addEventListener('popstate', function () {
-    var _findComponentFromPat2 = findComponentFromPath(routes),
-        match = _findComponentFromPat2.match,
-        component = _findComponentFromPat2.component;
+    window.addEventListener('popstate', function () {
+      var _findComponentFromPat2 = findComponentFromPath(routes),
+          match = _findComponentFromPat2.match,
+          component = _findComponentFromPat2.component;
 
-    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
-  });
+      render(component(match)(render, root));
+    });
 
-  setTimeout(function () {
     var _findComponentFromPat3 = findComponentFromPath(routes),
         match = _findComponentFromPat3.match,
         component = _findComponentFromPat3.component;
 
-    (0, _mulan.createRenderer)(document.getElementById('router'), component(match));
-  }, 0);
-
-  return '<div id="router"></div>';
+    render(component(match)(render, root));
+  };
 };
 
 _delegateEvents2.default.bind(document.body, '[data-router-link]', 'click', function (e) {

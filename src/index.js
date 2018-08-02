@@ -1,4 +1,3 @@
-import {createRenderer} from 'mulan'
 import delegate from 'delegate-events'
 import pathToRegexp from 'path-to-regexp'
 
@@ -35,23 +34,19 @@ const findComponentFromPath = (routes) => {
   return {match, component}
 }
 
-export const createRouter = (routes) => {
+export const createRouter = (routes) => (render, root) => {
   window.addEventListener('pushstate', () => {
     const {match, component} = findComponentFromPath(routes)
-    createRenderer(document.getElementById('router'), component(match))
+    render(component(match)(render, root))
   })
 
   window.addEventListener('popstate', () => {
     const {match, component} = findComponentFromPath(routes)
-    createRenderer(document.getElementById('router'), component(match))
+    render(component(match)(render, root))
   })
 
-  setTimeout(() => {
-    const {match, component} = findComponentFromPath(routes)
-    createRenderer(document.getElementById('router'), component(match))
-  }, 0)
-
-  return `<div id="router"></div>`
+  const {match, component} = findComponentFromPath(routes)
+  render(component(match)(render, root))
 }
 
 delegate.bind(document.body, `[data-router-link]`, 'click', (e) => {
